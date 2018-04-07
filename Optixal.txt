@@ -1,0 +1,544 @@
+constant = "1"
+i = 0
+TextWindow.Show()
+TextWindow.Title = "Optixal - A development branch of Optix - Created by Alex Lonsdale"
+TextWindow.ForegroundColor = 11
+TextWindow.WriteLine("Please state the location of the main_system_log.txt file: ")
+main_system_file_location = TextWindow.Read()
+main_system_file_increment = 0
+TextWindow.WriteLine("Please state the location of your users.txt file: ")
+user_file_location = TextWindow.Read()
+TextWindow.WriteLine("Please state the location of your user_number.txt file: ")
+user_file_location_number = TextWindow.Read()
+user_number = File.ReadLine(user_file_location_number, constant)
+login:
+TextWindow.WriteLine("Login with user number: ")
+login_number = TextWindow.Read()
+If login_number = "6" Or login_number = "7" Then
+  TextWindow.ForegroundColor = "Red"
+  TextWindow.WriteLine("Kill code: 68472")
+  TextWindow.ForegroundColor = 11
+  kill_code_check = "68472"
+EndIf
+admin_key_actual = "2139"
+main_system_file_increment = main_system_file_increment + 1
+File.WriteLine(main_system_file_location, main_system_file_increment, "Login successful, proceeding to boot Optixal...")
+main_system_file_increment = main_system_file_increment + 1
+File.WriteLine(main_system_file_location, main_system_file_increment, "Booted up, file now ready for all reports to main log. Syntax is found in documentation. Encryped mode? = False")
+prefix = File.ReadLine(user_file_location, login_number)
+prefix = prefix + "#" + login_number
+Sub Run
+  TextWindow.Write(prefix + " -? ")
+  Sound.PlayClick()
+  function = TextWindow.Read()
+EndSub
+temp_counter = 0
+increment = 0
+TextWindow.ForegroundColor = 13
+TextWindow.WriteLine("Optixal Interface now open. Ready to excecute.")
+TextWindow.ForegroundColor = 11
+start:
+Run()
+recall:
+If function = "Volume Calculator" Then
+  recent_function = "Volume Calculator"
+  TextWindow.Write("Which shape would you like to work out the volume of?: ")
+  shape = TextWindow.Read()
+
+  If shape = "Sphere" Then
+    TextWindow.Write("What is the radius?: ")
+    radius = TextWindow.Read()
+    volume = 4/3*3.141592653589*radius*radius*radius
+    TextWindow.WriteLine(volume)
+  EndIf
+
+  If shape = "Cube" Then
+    TextWindow.Write("What is the width?: ")
+    cube_width = TextWindow.Read()
+    cube_volume = cube_width*cube_width*cube_width
+    TextWindow.WriteLine(cube_volume)
+  EndIf
+
+  If shape = "Cuboid" Then
+    TextWindow.Write("What is the first measurment?: ")
+    cuboid_1 = TextWindow.Read()
+    TextWindow.Write("What is the second measurment?: ")
+    cuboid_2 = TextWindow.Read()
+    TextWindow.Write("What is the third measurment?: ")
+    cuboid_3 = TextWindow.Read()
+    cuboid_volume = cuboid_1*cuboid_2*cuboid_3
+    TextWindow.WriteLine(cuboid_volume)
+  EndIf
+Run()
+EndIf
+If function = "Probability Calculator" Then
+  recent_function = "Probability Calculator"
+  TextWindow.WriteLine("What is the number of successful outcomes?")
+  s = TextWindow.Read()
+  TextWindow.WriteLine("What is the total number of outcomes?")
+  t = TextWindow.Read()
+  TextWindow.WriteLine(s / t)
+EndIf
+If function = "Calculator" Then
+  recent_function = "Calculator"
+  TextWindow.WriteLine("What is the operation?: ")
+  operation = TextWindow.Read()
+  TextWindow.WriteLine("What is the first number?: ")
+  num_1 = TextWindow.Read()
+  TextWindow.WriteLine("What is the second number?: ")
+  num_2 = TextWindow.Read()
+  If operation = "+" Then
+    TextWindow.WriteLine(num_1 + num_2)
+  EndIf
+  If operation = "-" Then
+    TextWindow.WriteLine(num_1 - num_2)
+  EndIf
+  If operation = "*" Then
+    TextWindow.WriteLine(num_1 * num_2)
+  EndIf
+  If operation = "/" Then
+    TextWindow.WriteLine(num_1 / num_2)
+  EndIf
+  Run()
+EndIf
+If function = "Change Prefix" Then
+  TextWindow.WriteLine("What would you like to change your prefix to?")
+  TextWindow.WriteLine("This will not affect the users.txt or the user_number.txt file")
+  prefix_change = TextWindow.Read()
+  prefix = prefix_change + "#" + login_number
+EndIf
+  If function = "Edit" Then
+  recent_function = "Edit"
+  TextWindow.WriteLine("Please state the file path of the .txt file you wish to open. ")
+  TextWindow.WriteLine("Unfortunatly, Optixal cannot create files, so you will have to open a blank document if you wish to create a .txt file:")
+  file_path = TextWindow.Read()
+  TextWindow.ForegroundColor = "Green"
+  TextWindow.Write(File.ReadContents(file_path))
+  TextWindow.ForegroundColor = 11
+  file_write:
+  TextWindow.WriteLine("What would you like to add to the file?: ")
+  write = TextWindow.Read()
+  TextWindow.WriteLine("Which line?: ")
+  line_num = TextWindow.Read()
+  File.WriteLine(file_path, line_num, write)
+  While write <> "End write"
+    Goto file_write
+  EndWhile
+EndIf
+If function = "run" Then
+  Run()
+EndIf
+If function = "switch" Then
+  recent_function = "switch"
+  TextWindow.WriteLine("Which directory would you like to switch to?: ")
+  directory = TextWindow.Read()
+  TextWindow.WriteLine("This is a meaningless command, as Optixal can open files anywhere on the computer")
+  Run()
+EndIf
+If function = "nano" Then
+  recent_function = "nano"
+  TextWindow.WriteLine("Please state the file path of the .txt file you wish to open. ")
+  TextWindow.WriteLine("Unfortunatly, Optixal cannot create files, so you will have to open a blank document if you wish to create a .txt file:")
+  file_path_increment = TextWindow.Read()
+  TextWindow.ForegroundColor = "Green"
+  TextWindow.Write(File.ReadContents(file_path_increment))
+  TextWindow.ForegroundColor = 11
+  increment = increment + 1
+  While File.ReadLine(file_path_increment, increment) <> ""
+    increment = increment + 1
+  EndWhile
+  increment = increment - 1
+  TextWindow.WriteLine("What would you like to add to the file?")
+  file_write_nano:
+  increment = increment + 1
+  TextWindow.ForegroundColor = 11
+  TextWindow.Write(":")
+  TextWindow.ForegroundColor = "Green"
+  write_increment = TextWindow.Read()
+  File.WriteLine(file_path_increment, increment, write_increment)
+  While write_increment <> "End write"
+    Goto file_write_nano
+  EndWhile
+  File.WriteLine(file_path_increment, increment, " ")
+EndIf
+If function = "Read" Then
+  TextWindow.WriteLine("Please give the filepath of the file you would like to read: ")
+  file_path_read = TextWindow.Read()
+  TextWindow.ForegroundColor = "Green"
+  TextWindow.Write(File.ReadContents(file_path_read))
+  TextWindow.ForegroundColor = 11
+  TextWindow.WriteLine("To edit the file, use the command 'Edit' or 'nano'")
+  Run()
+EndIf
+If function = "Install" Then
+  recent_function = "Install"
+  TextWindow.WriteLine("Validation key for installation has been written to the data file.")
+  File.WriteLine("C:\Users\epicm\Desktop\file.txt", 10, "Validation key: 157839573")
+  TextWindow.WriteLine("Please use the installation program to add to Optixal.")
+  Run()
+EndIf
+If function = "Logout" Then
+  TextWindow.ForegroundColor = 13
+  TextWindow.WriteLine("Logout successful, proceeding to 'login:'.")
+  TextWindow.ForegroundColor = 11
+  Goto login
+EndIf
+If function = "Parsing engine" Or "UCPS" Then
+  increment_parse = 0
+  var_count = 0
+   TextWindow.WriteLine("Please state the filepath of the excecution file to parse: ")
+   excecute_file = TextWindow.Read()
+   execute:
+   increment_parse = increment_parse + 1
+   parse_line = File.ReadLine(excecute_file, increment_parse)
+   TextWindow.ForegroundColor = "Green"
+   If parse_line = "print" Then
+     increment_parse = increment_parse + 1
+     to_print = File.ReadLine(excecute_file, increment_parse)
+     If to_print = "var" Then
+       increment_parse = increment_parse + 1
+       var_number = File.ReadLine(excecute_file, increment_parse)
+       TextWindow.WriteLine(var[var_number])
+       Goto execute
+     Else
+       TextWindow.WriteLine(to_print)
+       Goto execute
+     EndIf
+   EndIf
+   If parse_line = "var" Then
+     increment_parse = increment_parse + 1
+     var_count = File.ReadLine(excecute_file, increment_parse)
+     increment_parse = increment_parse + 1
+     var[var_count] = File.ReadLine(excecute_file, increment_parse)
+     Goto execute
+   EndIf
+   If parse_line = "input" Then
+     increment_parse = increment_parse + 1
+     TextWindow.WriteLine(File.ReadLine(excecute_file, increment_parse))
+     user_input_program = TextWindow.Read()
+     increment_parse = increment_parse + 2
+     var_number_program = File.ReadLine(excecute_file, increment_parse)
+     increment_parse = increment_parse + 1
+     File.WriteLine(excecute_file, increment_parse, user_input_program)
+     var[var_number_program] = File.ReadLine(excecute_file, increment_parse)
+     Goto execute
+   EndIf 
+   If parse_line = "stop" Then
+     Goto end_excecution
+   EndIf
+   If parse_line = "if" Then
+     TextWindow.ForegroundColor = "Green"
+     increment_parse = increment_parse + 2
+     var_1 = var[File.ReadLine(excecute_file, increment_parse)]
+     increment_parse = increment_parse + 1
+     condition = File.ReadLine(excecute_file, increment_parse)
+     increment_parse = increment_parse + 2
+     var_2 = var[File.ReadLine(excecute_file, increment_parse)]
+     increment_parse = increment_parse + 1
+     action = File.ReadLine(excecute_file, increment_parse)
+     increment_parse = increment_parse + 1
+     statement_1 = File.ReadLine(excecute_file, increment_parse)
+     increment_parse = increment_parse + 2
+     inaction = File.ReadLine(excecute_file, increment_parse)
+     increment_parse = increment_parse + 1
+     statement_2 = File.ReadLine(excecute_file, increment_parse)
+     If condition = "=" Then
+       If var_1 = var_2 Then
+         to_print = "TRUE"
+       Else
+         to_print = "FALSE" 
+       EndIf
+     EndIf
+     If condition = "<" Then
+       If var_1 < var_2 Then
+         to_print = "TRUE"
+       Else
+         to_print = "FALSE" 
+       EndIf
+     EndIf
+     If condition = ">" Then
+       If var_1 > var_2 Then
+         to_print = "TRUE"
+       Else
+         to_print = "FALSE" 
+       EndIf
+     EndIf
+     If condition = "!=" Then
+       If var_1 <> var_2 Then
+         to_print = "TRUE"
+       Else
+         to_print = "FALSE" 
+       EndIf
+     EndIf
+     If condition = "<=" Then
+       If var_1 <= var_2 Then
+         to_print = "TRUE"
+       Else
+         to_print = "FALSE" 
+       EndIf
+     EndIf
+     If condition = ">=" Then
+       If var_1 >= var_2 Then
+         to_print = "TRUE"
+       Else
+         to_print = "FALSE" 
+       EndIf
+     EndIf
+     If action = "print" Then
+       If to_print = "TRUE" Then
+         TextWindow.WriteLine(statement_1)
+       EndIf
+     EndIf
+     If inaction = "print" Then
+       If to_print = "FALSE" Then
+         TextWindow.WriteLine(statement_2)
+       EndIf
+     EndIf
+     If action = "var" Then
+       If to_print = "TRUE" Then
+         var[statement_1] = "TRUE"
+         var[statement_2] = "FALSE"
+       Else
+         var[statement_1] = "FALSE"
+         var[statement_2] = "TRUE"
+       EndIf
+     EndIf
+     If inaction = "var" Then
+       If to_print = "TRUE" Then
+         var[statement_1] = "FALSE"
+         var[statement_2] = "TRUE"
+       Else
+         var[statement_1] = "TRUE"
+         var[statement_2] = "FALSE"
+       EndIf
+     EndIf
+     Goto execute
+   EndIf 
+   end_excecution:
+   TextWindow.ForegroundColor = 11
+   Run()
+EndIf
+If function = "List" Then
+  recent_function = "List"
+  TextWindow.WriteLine("Which directory would you like to examine?: ")
+  list_directory = TextWindow.Read()
+  TextWindow.ForegroundColor = "Green"
+  TextWindow.WriteLine("--------")
+  TextWindow.WriteLine("Directories in location:")
+  TextWindow.WriteLine(File.GetDirectories(list_directory))
+  TextWindow.WriteLine("--------")
+  TextWindow.WriteLine("Files in location:")
+  TextWindow.WriteLine(File.GetFiles(list_directory))
+  TextWindow.ForegroundColor = "Yellow"
+  TextWindow.WriteLine("Complete.")
+  TextWindow.ForegroundColor = 11
+  Run()
+EndIf
+If function = "Report" Then
+  recent_function = "Report"
+  main_system_file_increment = main_system_file_increment + 1
+  File.WriteLine(main_system_file_location, main_system_file_increment, recent_function)
+  TextWindow.ForegroundColor = "Red"
+  TextWindow.WriteLine("Please enter the admin key: ")
+  admin_key_attempt = TextWindow.Read()
+  If admin_key_attempt = admin_key_actual Then
+    write_report:
+    TextWindow.WriteLine("What do wish to write to the log?: ")
+    to_write_log = TextWindow.Read()
+    If to_write_log = "End write" Then
+      Goto end_log
+    Else
+      Goto continue_log
+    EndIf
+    continue_log:
+    main_system_file_increment = main_system_file_increment + 1
+    File.WriteLine(main_system_file_location, main_system_file_increment, to_write_log)
+    Goto write_report
+  Else
+    TextWindow.WriteLine("Sorry, that key was incorrect, now returning to 'Run()'")
+    TextWindow.ForegroundColor = 11
+  end_log:
+  Run()
+  EndIf
+EndIf 
+If function = "Create Directory" Then
+  recent_function = "Create Directory"
+  TextWindow.WriteLine("Please give the EXACT file path of the directory to create: ")
+  new_directory = TextWindow.Read()
+  File.CreateDirectory(new_directory)
+  TextWindow.WriteLine("Operation successful, directory created." + " " + new_directory)
+  Run()
+EndIf
+If function = "Delete File" Then
+  recent_function = "Delete File"
+  TextWindow.WriteLine("What is the file path of the file to be deleted?: ")
+  del_filepath = TextWindow.Read()
+  File.DeleteFile(del_filepath)
+  TextWindow.WriteLine("Operation successful, the file at" + " " + del_filepath + " " + "has been deleted.")
+  Run()
+EndIf
+If function = "Clear" Then
+  recent_function = "Clear"
+  TextWindow.Clear()
+  TextWindow.WriteLine("Successfully cleared!")
+  Run()
+EndIf
+If function = "BEST" And  login_number = "6" Or login_number = "7" Then
+  TextWindow.ForegroundColor = "Red"
+  BEST:
+  i = i + 1
+  TextWindow.WriteLine(i)
+  Goto BEST
+EndIf
+If function = "Temp Storage" Then
+  recent_function = "Temp Storage"
+  TextWindow.WriteLine("What would you like to store in the temp variable?: ")
+  temp_counter = temp_counter + 1
+  temp_storage[temp_counter] = TextWindow.Read()
+  TextWindow.WriteLine("Data stored.")
+  Run()
+EndIf
+If function = "Store Data" Then
+  recent_function = "Store Data"
+  TextWindow.WriteLine("What is the file path of the file that you would like to write to? :")
+  file_storage_path = TextWindow.Read()
+  TextWindow.WriteLine("Which line would you like to write to?: ")
+  line_storage_write = TextWindow.Read()
+  TextWindow.WriteLine("What would you like to edit on this line?: ")
+  to_write = TextWindow.Read()
+  File.WriteLine(file_storage_path, line_storage_write, to_write)
+  Run()
+EndIf
+If function = "Create User" Then
+  recent_function = "Create User"
+  TextWindow.WriteLine("What should the user's name be?: ")
+  new_user = TextWindow.Read()
+  user_number = user_number + 1
+  users[user_number] = new_user
+  File.WriteLine(user_file_location, user_number, new_user)
+  File.WriteLine(user_file_location_number, constant, user_number)
+  Run()
+EndIf
+If function = "Switch User" Then
+  recent_function = "Switch User"
+  TextWindow.WriteLine("Please give the key of the user you would like to switch to: ")
+  user_switch = TextWindow.Read()
+  prefix = File.ReadLine(user_file_location, user_switch)
+  prefix = prefix + ":" + user_switch
+  Run()
+EndIf
+If function = "WhoAmI?" Then
+  recent_function = "WhoAmI?"
+  TextWindow.WriteLine(prefix + "#" + login_number)
+  Run()
+EndIf
+If function = "Optix?" Then
+  TextWindow.WriteLine("Optixal is a developmental branch of Optix, designed for use on Windows.")
+EndIf
+If function = "Commit" Then
+  recent_function = "Commit"
+  TextWindow.Write(": ")
+  Commit = TextWindow.Read()
+  TextWindow.ForegroundColor = "Green"
+  TextWindow.WriteLine(Commit)
+  TextWindow.ForegroundColor = 11
+  Run()
+EndIf
+If function = "recall" Then
+  function = recent_function
+  Goto recall
+EndIf
+If function = "sleep" Then
+  sleep:
+  TextWindow.WriteLine("Sleeping")
+  Goto sleep
+EndIf
+If function = "Kill" Then
+  TextWindow.ForegroundColor = "Red"
+  TextWindow.WriteLine("Kill Verifaction Code?: ")
+  kill_code = TextWindow.Read()
+  If kill_code = kill_code_check Then
+    Goto kill
+  Else
+    File.WriteLine(main_system_file_location, main_system_file_increment, "Attempt at accessing Kill function. Access Denied. Incorrect validation key." + " : " + kill_code)
+    TextWindow.WriteLine("ACCESS DENIED! REPORTED TO MAIN SYSTEM LOG!")
+    TextWindow.ForegroundColor = 11
+    Run()
+  EndIf
+EndIf
+If function = "Update" Then
+   increment_parse_update = 0
+   var_count_update = 0
+   TextWindow.WriteLine("Please give the filepath of the update package: ")
+   excecute_file_update = TextWindow.Read()
+   execute_update:
+   increment_parse_update = increment_parse_update + 1
+   parse_line_update = File.ReadLine(excecute_file_update, increment_parse_update)
+   TextWindow.ForegroundColor = "Green"
+   If parse_line_update = "print" Then
+     increment_parse_update = increment_parse_update + 1
+     to_print_update = File.ReadLine(excecute_file_update, increment_parse_update)
+     If to_print = "var" Then
+       increment_parse_update = increment_parse_update + 1
+       var_number_update = File.ReadLine(excecute_file_update, increment_parse_update)
+       TextWindow.WriteLine(var_update[var_number_update])
+       Goto execute_update
+     Else
+       TextWindow.WriteLine(to_print_update)
+       Goto execute_update
+     EndIf
+   EndIf
+   If parse_line_update = "var" Then
+     increment_parse_update = increment_parse_update + 1
+     var_count_update = File.ReadLine(excecute_file_update, increment_parse_update)
+     increment_parse_update = increment_parse_update + 1
+     var_update[var_count_update] = File.ReadLine(excecute_file_update, increment_parse_update)
+     Goto execute_update
+   EndIf
+   If parse_line_update = "input" Then
+     increment_parse_update = increment_parse_update + 1
+     TextWindow.WriteLine(File.ReadLine(excecute_file_update, increment_parse_update))
+     user_input_program_update = TextWindow.Read()
+     increment_parse_update = increment_parse_update + 2
+     var_number_program_update = File.ReadLine(excecute_file_update, increment_parse_update)
+     increment_parse_update = increment_parse_update + 1
+     File.WriteLine(excecute_file_update, increment_parse_update, user_input_program_update)
+     var_update[var_number_program_update] = File.ReadLine(excecute_file_update, increment_parse_update)
+     Goto execute_update
+   EndIf 
+   If parse_line = "stop" Then
+     Goto end_excecution_update
+   EndIf
+   end_excecution_update:
+   TextWindow.ForegroundColor = 11
+   Run()
+ EndIf
+ If function = "Webpage Extracter" Then
+   TextWindow.WriteLine("What is the EXACT URL of the webpage you would like to extract?:")
+   web_page = TextWindow.Read()
+   TextWindow.ForegroundColor = "Green"
+   TextWindow.WriteLine(Network.GetWebPageContents(web_page))
+   TextWindow.ForegroundColor = 11
+ EndIf
+ If function = "Download File" Then
+   TextWindow.WriteLine("What is the EXACT URL of the file to download?: ")
+   file_download = TextWindow.Read()
+   TextWindow.ForegroundColor = "Green"
+   TextWindow.WriteLine(Network.DownloadFile(file_download))
+   TextWindow.ForegroundColor = 11
+ EndIf
+If function = "translate" Then
+  TextWindow.WriteLine("Would you like to translate?: ")
+   to_translate = TextWindow.Read()
+   TextWindow.WriteLine("French" + ": " + Dictionary.GetDefinitionEnglishToEnglish(to_translate))
+   TextWindow.WriteLine("Spanish" + ": " + Dictionary.GetDefinitionEnglishToSpanish(to_translate))
+   TextWindow.WriteLine("Spanish" + ": " + Dictionary.GetDefinitionEnglishToGerman(to_translate))
+   TextWindow.WriteLine("Spanish" + ": " + Dictionary.GetDefinitionEnglishToFrench(to_translate))
+EndIf
+If function <> "Volume Calculator" Or "nano" Or "Edit" Or "List" Or "recall" Or "run" Or "sleep" Or "Switch User" Or "Create User" Or "switch" Or "Volume Calculator" Or "Probability Calculator" Or "Calculator" Or "Read" Or "Install" Or "Create Directory" Or "Delete File" Or "Temp Storage" Or "Store Data" Or "Kill" Or "WhoAmI?" Or "Commit" Or "Optix?" Then
+  TextWindow.ForegroundColor = "Red"
+  TextWindow.WriteLine("Error - Unknown function. Check spelling. This error message may be incorrect. If so, feel free to report it using the 'Report' function. Returning to 'Run()'")
+  TextWindow.ForegroundColor = 11
+EndIf
+Goto start
+kill:
