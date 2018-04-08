@@ -1,0 +1,37 @@
+Optix Documentation:
+
+NOTE!
+Not all Optixal features are listed here, as they are @admin functions.
+
+Basic Syntax:
+All functions use capital letters:
+
+'Switch User' - As you can see, both words are in uppercase.
+
+All login names are represented by numbers that directly relate to the line number that the username is stored on in 'users.txt'.
+This is why there is no 'user 0'. The line number 0 does not exist. If you wish to secure your login, simply write your username on a higher line number.
+For instance, '@SuperUltraAdmin usally uses the user_number 3, simply change its location to a higher state.
+
+Most, if not all, functions will require some kind of data to inputted. Please give this data in the format requested, as the computer cannot determine different formats.
+
+List of Functions:
+
+Volume Calculator
+-Calculates the approximate volume of 3 dimensional objects.
+
+Probability Calculator
+-Calculates the probabilty of an event occuring.
+
+Nano
+-Basic text editor. Will first display the file before editing.
+-WARNING!
+-Nano will start to write on ANY empty line. Do not leave empty lines in files!
+-To end your write, simply type into the interface:
+End write
+
+Edit
+-Will allow you to choose which lines to edit, similar to Nano.
+
+Read
+-Asks for a file path, and then outputs the contents. Works best with .txt files.
+
